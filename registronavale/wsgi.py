@@ -1,5 +1,5 @@
 """
-WSGI config for pycon7 project.
+WSGI config for the registronavale project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pycon7.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "registronavale.settings")
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

@@ -1,11 +1,5 @@
 """
-Django settings for pycon7 project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
+Django settings for the registronavale project.
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -51,10 +45,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pycon7.urls'
+ROOT_URLCONF = 'registronavale.urls'
 APPEND_SLASH = False
 
-WSGI_APPLICATION = 'pycon7.wsgi.application'
+WSGI_APPLICATION = 'registronavale.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -100,3 +94,18 @@ USE_I18N = True
 USE_L10N = True
 
 STATIC_URL = '/static/'
+
+
+# Disable deprecation warnings
+import logging
+
+def filter_deprecation_warnings(record):
+    warnings_to_suppress = [
+        'RemovedInDjango110Warning'
+    ]
+    # Return false to suppress message.
+    return not any([warn in record.getMessage()
+                    for warn in warnings_to_suppress])
+
+warn_logger = logging.getLogger('py.warnings')
+warn_logger.addFilter(filter_deprecation_warnings)

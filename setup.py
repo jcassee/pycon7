@@ -3,21 +3,21 @@
 from distutils.core import setup
 
 setup(
-    name='pycon7',
+    name='registronavale',
     version='0.1',
-    description='Example project for PyCon 7',
+    description='Example project for PyCon Sette',
     author='Joost Cassee',
     author_email='joost@cassee.net',
-    url='https://github.com/jcassee/pycon7',
-    packages=['pycon7'],
+    url='https://github.com/jcassee/registronavale',
+    packages=['registronavale'],
     install_requires=[
+        'behave-django',
         'Django',
-        'django-behave',
         'django-filter',
         'django-extensions',
         'djangorestframework',
         'drf-hal-json',
-        'markdown',
-        'requests',
+        'Markdown',
+        'uritemplate.py',
     ],
 )
