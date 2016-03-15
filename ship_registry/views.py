@@ -12,9 +12,13 @@ from . import serializers
 @permission_classes([AllowAny])
 def api_root(request):
     return Response({
+        'hello': 'world!',
         '_links': {
             'self': {
                 'href': request._request.get_raw_uri(),
+            },
+            'get-ship': {
+                'href': reverse('ship-detail', kwargs={'imo': 'IMO'}, request=request).replace('IMO', '{imo}'),
             },
             'search-ships': {
                 'href': reverse('ship-search', request=request) + "{?q}",
