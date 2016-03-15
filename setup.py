@@ -2,9 +2,11 @@
 
 from distutils.core import setup
 
+import registronavale
+
 setup(
     name='registronavale',
-    version='0.1',
+    version=registronavale.__version__,
     description='Example project for PyCon Sette',
     author='Joost Cassee',
     author_email='joost@cassee.net',

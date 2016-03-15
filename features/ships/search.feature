@@ -1,40 +1,24 @@
 Feature: Searching for ships
 
-  Scenario: Search for a ship using it's IMO-number
-    Given a company named "Rederij Joost"
-      And a ship named "Providence" with imo "12345" owned by "Rederij Joost"
-     When you send a GET request to the root resource
-      And you follow the link relation "get-ship" with parameters
-          | param | value |
-          | imo   | 12345 |
+  Scenario: Search for ships
+     When you get the root resource
+      And you follow the link relation "http://rels.registronavale.com/search-ships" with parameters
+          | param | value         |
+          | q     | search string |
      Then the status is "200"
       And the "Content-Type" header is "application/hal+json"
-      And the JSON response contains
-          """
-          {
-            "imo": 12345,
-            "name": "Providence"
-          }
-          """
-
-  Scenario: Search for a ship using an IMO-number that does not exist
-    Given the registry contains no ships
-     When you send a GET request to the root resource
-      And you follow the link relation "get-ship" with parameters
-          | param | value |
-          | imo   | 12345 |
-     Then the status is "404"
+      And the profile is "http://profiles.registronavale.com/collection"
 
   Scenario: Search for a ship
-    Given a company named "Rederij Joost"
-    And a ship named "Providence" with imo "12345" owned by "Rederij Joost"
-     When you send a GET request to the root resource
-      And you follow the link relation "search-ships" with parameters
+    Given a ship named "Providence" with imo "12345"
+     When you get the root resource
+      And you follow the link relation "http://rels.registronavale.com/search-ships" with parameters
           | param | value |
           | q     | Prov |
-     Then the status is "200"
-      And the "Content-Type" header is "application/hal+json"
-      And the JSON response contains
+      And you follow the embedded relation "item"
+      And you take the first resource
+     Then the profile is "http://profiles.registronavale.com/ship"
+      And the representation contains
             """
             {
               "imo": 12345,
