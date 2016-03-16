@@ -7,7 +7,7 @@ Feature: Getting information about a ship owner
       And you follow the embedded relation "http://rels.registronavale.com/owner"
      Then the profile is "http://profiles.registronavale.com/company"
       And the representation contains
-          """
+          """json
           {
             "name": "Rederij Joost"
           }

@@ -8,7 +8,7 @@ Feature: The root resource
      Then the status is "200"
       And the "Content-Type" header is "application/hal+json"
       And the representation contains
-          """
+          """json
           {
             "version": "0.1"
           }

@@ -19,7 +19,7 @@ Feature: Searching for ships
       And you take the first resource
      Then the profile is "http://profiles.registronavale.com/ship"
       And the representation contains
-            """
+            """json
             {
               "imo": 12345,
               "name": "Providence"

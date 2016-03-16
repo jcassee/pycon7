@@ -10,7 +10,7 @@ Feature: Getting a ship
       And the "Content-Type" header is "application/hal+json"
       And the profile is "http://profiles.registronavale.com/ship"
       And the representation contains
-          """
+          """json
           {
             "imo": 12345,
             "name": "Providence"
