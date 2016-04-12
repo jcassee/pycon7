@@ -1,4 +1,4 @@
-# Registro Navale
+# Registro Navale [![Build Status](https://travis-ci.org/jcassee/registronavale.svg)](https://travis-ci.org/jcassee/registronavale)
 
 An example project that demonstrates how to create a hypermedia API using Django
 REST framework and document it using Gherkin tests, developed for
