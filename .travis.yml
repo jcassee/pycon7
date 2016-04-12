@@ -1,6 +1,12 @@
 language: python
-python: "3.4"
+python: "3.5"
 install:
   - pip install -r requirements.txt
+  - gem install relish
+  - echo "api_token: $RELISH_TOKEN" > ~/.relish
 script:
   - python manage.py behave
+  # TODO: build Docker image
+after_success:
+  - relish push
+  # TODO: push Docker image
