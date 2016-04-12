@@ -14,7 +14,7 @@ class Company(models.Model):
 class Ship(models.Model):
     imo = models.PositiveIntegerField(db_index=True, unique=True)
     name = models.CharField(max_length=255)
-    owner = models.ForeignKey(Company, related_name='ships')
+    owner = models.ForeignKey(Company, related_name='ships', blank=True, null=True)
 
     class Meta:
         pass

@@ -11,8 +11,7 @@ def step_impl(context):
 
 @given('a ship named "{name}" with imo "{imo:d}"')
 def step_impl(context, name, imo):
-    company = Company.objects.create(name="{}'s owner".format(name))
-    Ship.objects.create(name=name, imo=imo, owner=company)
+    Ship.objects.create(name=name, imo=imo)
 
 
 @given('a ship named "{name}" with imo "{imo:d}" owned by "{owner}"')
@@ -24,5 +23,5 @@ def step_impl(context, name, imo, owner):
 @when('you get the ship "{name}"')
 def step_impl(context, name):
     ship = Ship.objects.get(name=name)
-    url = reverse('ship-detail', kwargs={'imo': ship.imo})
+    url = reverse('ship', kwargs={'imo': ship.imo})
     context.execute_steps('when you get the resource at "{}"'.format(url))

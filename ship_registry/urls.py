@@ -1,9 +1,9 @@
-from django.conf.urls import url
-
+from drf_hypermedia import routers
 from . import views
 
-urlpatterns = [
-    url(r'^company/(?P<pk>.+)$', views.CompanyDetail.as_view(), name='company-detail'),
-    url(r'^ships$', views.search_ships, name='ship-search'),
-    url(r'^ship/(?P<imo>.+)$', views.ShipDetail.as_view(), name='ship-detail'),
-]
+router = routers.HypermediaRouter(trailing_slash=False)
+router.register('search', views.SearchShips, 'search-ships')
+router.register('company', views.Company, 'company')
+router.register('company-ships', views.CompanyShips, 'company-ships')
+router.register('ship', views.Ship, 'ship')
+urlpatterns = router.urls

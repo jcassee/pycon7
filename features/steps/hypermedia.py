@@ -10,18 +10,28 @@ from ship_registry.models import Company, Ship
 
 @when('you get the resource at "{url}"')
 def step_impl(context, url):
-    context.response = context.test.client.get(url)
+    context.response = context.test.client.get(url, **context.request_kwargs)
     context.response_text = context.response.content.decode()
 
 
-@when('you follow the link relation "{rel}"')
-@when('you follow the link relation "{rel}" with parameters')
+@when('you follow the relation "{rel}"')
+@when('you follow the relation "{rel}" with parameters')
 def step_impl(context, rel):
     data = json.loads(context.response_text)
+
+    try:
+        embedded = data['_embedded'][rel]
+        assert context.table is None, 'trying to follow embedded relation with parameters: %s' % rel
+        context.response_text = json.dumps(embedded)
+        return
+    except KeyError:
+        pass
+
     try:
         url = data['_links'][rel]['href']
     except KeyError:
         assert False, context.response_text
+
     var_dict = parse_param_table(context.table)
     if var_dict:
         url = expand(url, var_dict)
@@ -46,14 +56,14 @@ def step_impl(context, ordinal):
         index = -1
     else:
         index = int(re.search(r'\d+', ordinal).group()) - 1
-    context.execute_steps('when you take element {}'.format(index))
+    context.execute_steps('when you take resource {}'.format(index))
 
 
 @when('you take resource {index}')
 def step_impl(context, index):
     data = json.loads(context.response_text)
     try:
-        element = data[index]
+        element = data[int(index)]
     except KeyError:
         assert False, context.response_text
     context.response_text = json.dumps(element)
@@ -74,6 +84,13 @@ def step_impl(context, header, expected):
 @then('the profile is "{expected}"')
 def step_impl(context, expected):
     pass
+
+
+@then('the representation is')
+def step_impl(context):
+    expected = json.loads(context.text)
+    actual = json.loads(context.response_text)
+    assert actual == expected, context.response_text
 
 
 @then('the representation contains')

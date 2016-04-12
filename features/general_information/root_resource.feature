@@ -4,12 +4,25 @@ Feature: The root resource
   The URI of the root resource is https://api.registronavale.com.
 
   Scenario: Connecting to the API
-     When you get the root resource
+     When you get the resource at "https://api.registronavale.com"
      Then the status is "200"
       And the "Content-Type" header is "application/hal+json"
-      And the representation contains
+      And the representation is
           """json
           {
-            "version": "0.1"
+              "version": "0.1",
+              "_links": {
+                  "self": {
+                      "href": "https://api.registronavale.com/"
+                  },
+                  "http://rels.registronavale.com/ship-by-imo": {
+                      "href": "https://api.registronavale.com/ship/{imo}",
+                      "templated": true
+                  },
+                  "http://rels.registronavale.com/search-ships": {
+                      "href": "https://api.registronavale.com/search{?q}",
+                      "templated": true
+                  }
+              }
           }
           """

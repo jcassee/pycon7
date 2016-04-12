@@ -4,8 +4,7 @@ Django==1.9.4
 django-extensions==1.6.1
 django-filter==0.12.0
 djangorestframework==3.3.2
-drf-hal-json==0.9.1
-drf-nested-fields==0.9.3
+LinkHeader==0.4.3
 parse==1.6.6
 parse-type==0.3.4
 six==1.10.0

@@ -1,50 +1,44 @@
-from drf_hal_json import serializers as hal_serializers
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, reverse
+
+from drf_hypermedia.serializers import HalCollectionSerializer, HalSerializer
+from registronavale import profiles, relations
 
 from .models import Company, Ship
 
 
-class HalCollectionSerializer(serializers.ListSerializer):
-    def to_representation(self, data):
-        items = super(HalCollectionSerializer, self).to_representation(data)
-        return {
-            '_links': {
-                'self': '...',
-            },
-            '_embedded': {
-                'item': items
-            },
-        }
-
-    @property
-    def data(self):
-        pass
-
-
-class RegistrySerializer(serializers.Serializer):
-    hello = serializers.CharField()
-    class Meta:
-        list_serializer_class = HalCollectionSerializer
-
-
-class CompanySerializer(hal_serializers.HalModelSerializer):
+class CompanySerializer(HalSerializer, ModelSerializer):
     class Meta:
         model = Company
         fields = ['name']
         list_serializer_class = HalCollectionSerializer
+        profile = profiles.COMPANY
+        view_name = 'company'
+
+    def get_links(self, request, instance=None):
+        return {
+            relations.OWNED_SHIPS: {
+                'href': reverse('company-ships', kwargs={'pk': instance.pk}, request=request)
+            },
+        }
 
 
-class ShipSerializer(hal_serializers.HalModelSerializer):
+class ShipSerializer(HalSerializer, ModelSerializer):
     class Meta:
         model = Ship
-        fields = ['imo', 'name', 'owner']
-        nested_fields = {
-            'owner': (['name'], {}),
-        }
-        extra_kwargs = {
-            'self': {
-                'view_name': 'ship-detail',
-                'lookup_field': 'imo',
-            }
-        }
+        fields = ['imo', 'name']
         list_serializer_class = HalCollectionSerializer
+        profile = profiles.SHIP
+        view_name = 'ship'
+        lookup_field = 'imo'
+
+    def get_links(self, request, instance=None):
+        ret = {}
+        if instance.owner is not None:
+            ret[relations.SHIP_OWNER] = {'href': reverse('company', kwargs={'pk': instance.owner.pk}, request=request)}
+        return ret
+
+    def get_embedded(self, request, instance=None):
+        ret = {}
+        if instance.owner is not None:
+            ret[relations.SHIP_OWNER] = CompanySerializer(instance.owner, include_embedded=False, context=self.context).data
+        return ret

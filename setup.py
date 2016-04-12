@@ -18,7 +18,7 @@ setup(
         'django-filter',
         'django-extensions',
         'djangorestframework',
-        'drf-hal-json',
+        'LinkHeader',
         'Markdown',
         'uritemplate.py',
     ],

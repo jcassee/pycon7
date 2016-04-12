@@ -1,26 +1,19 @@
-from rest_framework.decorators import api_view
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework import permissions
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
 
 import registronavale
+from drf_hypermedia import reverse
+from drf_hypermedia.views import HypermediaViewSet, HypermediaRetrieveMixin
+from ship_registry import views as ship_views
+from . import relations
+from . import serializers
 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def api_root(request):
-    return Response({
-        'version': registronavale.__version__,
-        '_links': {
-            'self': {
-                'href': request._request.get_raw_uri(),
-            },
-            'get-ship': {
-                'href': reverse('ship-detail', kwargs={'imo': 'IMO'}, request=request).replace('IMO', '{imo}'),
-            },
-            'search-ships': {
-                'href': reverse('ship-search', request=request) + "{?q}",
-            },
-        },
-    })
+class ApiRoot(HypermediaRetrieveMixin, HypermediaViewSet):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = serializers.ApiRootSerializer
+
+    def get_data(self, request):
+        return {
+            'version': registronavale.__version__,
+        }

@@ -78,9 +78,10 @@ REST_FRAMEWORK = {
         # or allow read-only access for unauthenticated users.
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'DEFAULT_PAGINATION_CLASS': 'drf_hal_json.pagination.HalPageNumberPagination',
-    'DEFAULT_RENDERER_CLASSES': ['drf_hal_json.renderers.JsonHalRenderer'],
-    'URL_FIELD_NAME': 'self',
+    'DEFAULT_RENDERER_CLASSES': [
+        'drf_hypermedia.renderers.HalJsonRenderer',
+    ],
+    'EXCEPTION_HANDLER': 'drf_hypermedia.views.vnderror_exception_handler',
 }
 
 TIME_ZONE = 'Europe/Amsterdam'
