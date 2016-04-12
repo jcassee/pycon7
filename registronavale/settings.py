@@ -79,9 +79,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_RENDERER_CLASSES': [
-        'drf_hal.renderers.HalJsonRenderer',
+        'drf_hal.renderers.HalRenderer',
     ],
-    'EXCEPTION_HANDLER': 'drf_hal.views.vnderror_exception_handler',
+    'EXCEPTION_HANDLER': 'drf_hal.vnderror_exception_handler',
 }
 
 TIME_ZONE = 'Europe/Amsterdam'

@@ -1,15 +1,12 @@
 from rest_framework import permissions
-from rest_framework.response import Response
+from rest_framework.viewsets import GenericViewSet
 
 import registronavale
-from drf_hal import reverse
-from drf_hal.views import HypermediaViewSet, HypermediaRetrieveMixin
-from ship_registry import views as ship_views
-from . import relations
+from drf_hal.views import HalRetrieveMixin
 from . import serializers
 
 
-class ApiRoot(HypermediaRetrieveMixin, HypermediaViewSet):
+class ApiRoot(HalRetrieveMixin, GenericViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = serializers.ApiRootSerializer
 
