@@ -2,8 +2,8 @@ from rest_framework import permissions
 from rest_framework.response import Response
 
 import registronavale
-from drf_hypermedia import reverse
-from drf_hypermedia.views import HypermediaViewSet, HypermediaRetrieveMixin
+from drf_hal import reverse
+from drf_hal.views import HypermediaViewSet, HypermediaRetrieveMixin
 from ship_registry import views as ship_views
 from . import relations
 from . import serializers

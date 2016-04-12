@@ -2,8 +2,8 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 
-from drf_hypermedia import reverse
-from drf_hypermedia.views import HypermediaViewSet, HypermediaRetrieveModelMixin
+from drf_hal import reverse
+from drf_hal.views import HypermediaViewSet, HypermediaRetrieveModelMixin
 from registronavale import relations
 from . import models
 from . import serializers

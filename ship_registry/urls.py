@@ -1,4 +1,4 @@
-from drf_hypermedia import routers
+from drf_hal import routers
 from . import views
 
 router = routers.HypermediaRouter(trailing_slash=False)

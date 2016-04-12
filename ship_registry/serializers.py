@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, reverse
 
-from drf_hypermedia.serializers import HalCollectionSerializer, HalSerializer
+from drf_hal.serializers import HalCollectionSerializer, HalSerializer
 from registronavale import profiles, relations
 
 from .models import Company, Ship

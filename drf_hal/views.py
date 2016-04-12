@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.views import exception_handler
 
-from drf_hypermedia.renderers import HalJsonRenderer
+from drf_hal.renderers import HalJsonRenderer
 
 
 class HypermediaViewSet(GenericViewSet):

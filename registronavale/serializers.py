@@ -1,20 +1,18 @@
 from rest_framework import serializers
 
-from drf_hypermedia import reverse
-from drf_hypermedia.serializers import HalSerializer
+from drf_hal import reverse
+from drf_hal.serializers import HalSerializer
 from registronavale import profiles
 from registronavale import relations
 
 
 class ApiRootSerializer(HalSerializer):
+    version = serializers.CharField()
+
     class Meta:
         view_name = 'api-root'
 
-
-    version = serializers.CharField()
-
-    @classmethod
-    def get_links(cls, request, instance=None):
+    def get_links(self, request, instance=None):
         return {
             relations.SHIP_BY_IMO: {
                 'href': reverse('ship', kwargs={'imo': 'IMO'}, request=request).replace('IMO', '{imo}'),
