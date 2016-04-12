@@ -32,9 +32,11 @@ def step_impl(context, rel):
     except KeyError:
         assert False, context.response_text
 
-    var_dict = parse_param_table(context.table)
-    if var_dict:
-        url = expand(url, var_dict)
+    if context.table is not None:
+        var_dict = parse_param_table(context.table)
+        if var_dict:
+            url = expand(url, var_dict)
+
     context.execute_steps('when you get the resource at "{}"'.format(url))
 
 

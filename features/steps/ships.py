@@ -25,3 +25,15 @@ def step_impl(context, name):
     ship = Ship.objects.get(name=name)
     url = reverse('ship', kwargs={'imo': ship.imo})
     context.execute_steps('when you get the resource at "{}"'.format(url))
+
+
+@when('you search the registry with query "{query}"')
+def step_impl(context, query):
+    context.execute_steps(
+        '''
+        When you get the resource at "https://api.registronavale.com"
+         And you follow the relation "http://rels.registronavale.com/search-ships" with parameters
+             | param | value      |
+             | q     | %s |
+        ''' % query
+    )

@@ -6,20 +6,19 @@ Feature: Getting a ship
       And you follow the relation "http://rels.registronavale.com/ship-by-imo" with parameters
           | param | value |
           | imo   | 12345 |
-     Then the profile is "http://profiles.registronavale.com/ship"
-      And the representation is
+     Then the representation is
           """json
           {
-              "imo": 12345,
-              "name": "Providence",
-              "_links": {
-                  "profile": {
-                      "href": "http://profiles.registronavale.com/ship"
-                  },
-                  "self": {
-                      "href": "https://api.registronavale.com/ship/12345"
-                  }
+            "imo": 12345,
+            "name": "Providence",
+            "_links": {
+              "profile": {
+                "href": "http://profiles.registronavale.com/ship"
+              },
+              "self": {
+                "href": "https://api.registronavale.com/ship/12345"
               }
+            }
           }
           """
 

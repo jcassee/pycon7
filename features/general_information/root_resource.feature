@@ -10,19 +10,19 @@ Feature: The root resource
       And the representation is
           """json
           {
-              "version": "0.1",
-              "_links": {
-                  "self": {
-                      "href": "https://api.registronavale.com/"
-                  },
-                  "http://rels.registronavale.com/ship-by-imo": {
-                      "href": "https://api.registronavale.com/ship/{imo}",
-                      "templated": true
-                  },
-                  "http://rels.registronavale.com/search-ships": {
-                      "href": "https://api.registronavale.com/search{?q}",
-                      "templated": true
-                  }
+            "version": "0.1",
+            "_links": {
+              "self": {
+                "href": "https://api.registronavale.com/"
+              },
+              "http://rels.registronavale.com/ship-by-imo": {
+                "href": "https://api.registronavale.com/ship/{imo}",
+                "templated": true
+              },
+              "http://rels.registronavale.com/search-ships": {
+                "href": "https://api.registronavale.com/search{?q}",
+                "templated": true
               }
+            }
           }
           """

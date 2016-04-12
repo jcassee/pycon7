@@ -1,5 +1,8 @@
 - general_information:
-  - api.feature
+  - root_resource.feature
+  - collection.feature
 - ships:
   - get.feature
   - search.feature
+- companies:
+  - ship_owners.feature

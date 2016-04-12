@@ -38,13 +38,10 @@ class CompanyShips(ListModelMixin, HypermediaViewSet):
     def get_queryset(self):
         queryset = models.Company.objects.prefetch_related('ships')
         company = get_object_or_404(queryset, pk=self.kwargs['pk'])
-        return company.ships
+        return company.ships.all()
 
     def retrieve_model(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
-
-    def get_serializer(self, *args, **kwargs):
-        pass
 
 
 class Ship(HypermediaRetrieveModelMixin, HypermediaViewSet):
