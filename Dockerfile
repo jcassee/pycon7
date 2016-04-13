@@ -3,7 +3,7 @@ FROM python:3.5
 MAINTAINER Joost Cassee <joost@cassee.net>
 
 # Add parameterized entrypoint
-ADD https://github.com/jcassee/parameterized-entrypoint/releases/download/0.9.0/entrypoint_linux_amd64 /usr/local/bin/entrypoint
+ADD https://github.com/jcassee/parameterized-entrypoint/releases/download/0.10.0/entrypoint_linux_amd64 /usr/local/bin/entrypoint
 RUN chmod +x /usr/local/bin/entrypoint
 
 # Install Python packages
