@@ -1,8 +1,13 @@
 ---
 - name: Initialize Ansible
   hosts: localhost
-  roles:
-    - role: init
+  gather_facts: no
+  tasks:
+  - name: Add SSH private key into ssh-agent
+    shell: echo "{{ ssh_private_key }}" | ssh-add -
+    no_log: yes
+    when: "{{ add_ssh_key | default(False) | bool }}"
+    changed_when: no
 
 - name: Deploy Docker containers
   hosts: docker
