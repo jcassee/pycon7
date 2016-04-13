@@ -11,10 +11,6 @@ from registronavale import relations
 
 
 class HalSerializer(serializers.Serializer):
-    class Meta:
-        view_name = None
-        profile = None
-
     def __init__(self, instance=None, data=empty, include_embedded=True, **kwargs):
         self.include_embedded = include_embedded
         super(HalSerializer, self).__init__(instance, data, **kwargs)
@@ -29,14 +25,14 @@ class HalSerializer(serializers.Serializer):
         links = self.get_links(self.context['request'], instance)
         if links is None:
             links = {}
-        if relations.SELF not in links and getattr(self.Meta, 'view_name', None) is not None:
+        if relations.SELF not in links and hasattr(self.Meta, 'view_name'):
             if hasattr(self.Meta, 'model'):
                 lookup_field = getattr(self.Meta, 'lookup_field', 'pk')
                 kwargs = {lookup_field: getattr(instance, lookup_field)}
             else:
                 kwargs = None
             links[relations.SELF] = {'href': reverse(self.Meta.view_name, kwargs=kwargs, request=self.context['request'])}
-        if relations.PROFILE not in links and getattr(self.Meta, 'profile', None) is not None:
+        if relations.PROFILE not in links and hasattr(self.Meta, 'profile'):
             links[relations.PROFILE] = {'href': self.Meta.profile}
         ret['_links'] = links
 

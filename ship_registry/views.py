@@ -24,13 +24,6 @@ class Company(HalRetrieveModelMixin, GenericViewSet):
     queryset = models.Company.objects.all()
     serializer_class = serializers.CompanySerializer
 
-    def get_links(self, instance, request):
-        return {
-            relations.OWNED_SHIPS: {
-                'href': reverse('company-ships', kwargs={'pk': instance.pk}, request=request)
-            },
-        }
-
 
 class CompanyShips(ListModelMixin, GenericViewSet):
     serializer_class = serializers.ShipSerializer
@@ -45,15 +38,6 @@ class CompanyShips(ListModelMixin, GenericViewSet):
 
 
 class Ship(HalRetrieveModelMixin, GenericViewSet):
+    queryset = models.Ship.objects.all()
     lookup_field = 'imo'
     serializer_class = serializers.ShipSerializer
-
-    def get_queryset(self):
-        return models.Ship.objects.filter(imo=self.kwargs['imo'])
-
-    def get_links(self, instance, request):
-        return {
-            relations.SHIP_OWNER: {
-                'href': reverse('company', kwargs={'pk': instance.owner.pk}, request=request),
-            },
-        }

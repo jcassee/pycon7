@@ -16,8 +16,5 @@ class Ship(models.Model):
     name = models.CharField(max_length=255)
     owner = models.ForeignKey(Company, related_name='ships', blank=True, null=True)
 
-    class Meta:
-        pass
-
     def __str__(self):
         return "{} ({})".format(self.name, self.imo)
