@@ -1,6 +1,7 @@
 #!/bin/sh
 
-basedir=`dirname "$0"`
-cd "$basedir/../ansible"
+set -e
 
-ansible-playbook deploy.yml
+gem install relish
+echo "api_token: $RELISH_TOKEN" > ~/.relish
+relish push

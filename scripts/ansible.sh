@@ -1,5 +1,10 @@
 #!/bin/sh
 
-docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-docker build -t "$DOCKER_IMAGE" .
-docker push "$DOCKER_IMAGE"
+set -e
+
+sudo add-apt-repository -y ppa:ansible/ansible
+sudo apt-get update -q
+sudo apt-get install -y ansible
+
+cd ansible
+ansible-playbook deploy.yml

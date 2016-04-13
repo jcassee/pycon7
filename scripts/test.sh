@@ -1,10 +1,6 @@
 #!/bin/sh
 
-basedir=`dirname "$0"`
-cd "$basedir/../ansible"
+set -e
 
-sudo add-apt-repository -y ppa:ansible/ansible
-sudo apt-get update -q
-sudo apt-get install -y ansible
-
-ansible-playbook deploy.yml
+pip install -r requirements.txt
+python manage.py behave

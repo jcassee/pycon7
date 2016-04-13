@@ -1,12 +1,12 @@
 language: python
 python: "3.4"
-install:
-  - pip install -r requirements.txt
-  - gem install relish
-  - echo 'api_token: '$RELISH_TOKEN > ~/.relish
+sudo: required
+services:
+  - docker
+env:
+- DOCKER_IMAGE=jcassee/registronavale
 script:
-  - python manage.py behave
-  # TODO: build Docker image
-after_success:
-  - relish push
-  # TODO: push Docker image
+  - scripts/test.sh
+  - scripts/docker.sh
+  - scripts/ansible.sh
+  - scripts/relish.sh
