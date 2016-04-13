@@ -1,5 +1,5 @@
 .*
 *.iml
-ansible
-db.sqlite3
-local_settings.py
+/ansible
+/db.sqlite3
+/local_settings.py
