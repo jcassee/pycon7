@@ -2,14 +2,14 @@
 Local settings for the registronavale project.
 """
 
-DEBUG = False
+#DEBUG = False
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ database.name }}',
-        'USER': '{{ database.user }}',
-        'PASSWORD': '{{ database.password }}',
-        'HOST': '{{ database.host }}',
+        'NAME': '{{ database.name | default("django") }}',
+        'USER': '{{ database.user | default("django") }}',
+        'PASSWORD': '{{ database.password | default("django") }}',
+        'HOST': '{{ database.host | default("localhost") }}',
     }
 }
