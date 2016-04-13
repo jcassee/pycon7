@@ -34,10 +34,6 @@
     state: "{{ 'restarted' if (configure_res | result_item(item) | changed) else 'reloaded' }}"
     restart_policy: always
     pull: always
-    registry: "{{ docker_registry.url }}"
-    email: "{{ docker_registry.email }}"
-    username: "{{ docker_registry.username }}"
-    password: "{{ docker_registry.password }}"
   with_items: "{{ run_names }}"
   register: result
   ignore_errors: yes

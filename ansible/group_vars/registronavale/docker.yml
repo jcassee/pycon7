@@ -1,6 +1,37 @@
 ---
-docker_registry:
-  url: https://index.docker.io/v1/
-  email: joost+registronavale@cassee.net
-  username: registronavale
-  password: "{{ vault_docker_registry.password }}"
+database:
+  name: registronavale
+  user: registronavale
+  password: "{{ vault_database.password }}"
+  host: postgres
+
+
+containers:
+
+  - name: postgres
+    image: postgres:9.5
+    env:
+      POSTGRES_DB: "{{ database.name }}"
+      POSTGRES_USER: "{{ database.user }}"
+      POSTGRES_PASSWORD: "{{ database.password }}"
+
+  - name: registronavale
+    image: jcassee/registronavale
+    env:
+      WEB_DOMAIN: api.registronavale.com
+    vars:
+      database: "{{ database }}"
+    links:
+      - postgres
+
+  - name: sslterm
+    image: jcassee/nginx-sslterm
+    vars:
+      ssl_certificate: "{{ ssl_chain }}"
+      ssl_certificate_key: "{{ ssl_private_key }}"
+      ssl_trusted_certificate: "{{ ssl_rooted_chain }}"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /run/docker.sock:/run/docker.sock:ro
