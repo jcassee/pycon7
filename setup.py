@@ -20,6 +20,7 @@ setup(
         'djangorestframework',
         'LinkHeader',
         'Markdown',
+        'PyYAML',
         'uritemplate.py',
     ],
 )

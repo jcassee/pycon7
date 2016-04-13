@@ -16,8 +16,8 @@ CMD ["scripts/server.sh"]
 
 # Copy sources
 WORKDIR /srv
-COPY . /srv
-COPY local_settings.py.tmpl /templates/srv/local_settings.py
+COPY . /srv/
+COPY config/* /templates/srv/
 
 # Install dependencies
 RUN pip install -r requirements.txt

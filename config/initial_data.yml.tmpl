@@ -1,0 +1,15 @@
+- model: auth.user
+  pk: 1
+  fields:
+    username: {{ admin_username | default('admin') }}
+    password: {{ admin_password | default('pbkdf2_sha256$24000$Mleiruf5wk4z$hZ8uttXeYScmMDMYJ5ipxbQQfDxHg985A2Dh+XGrq9c=') }}
+    email: {{ admin_email | default('admin@registronavale.com') }}
+    last_login: null
+    is_superuser: true
+    first_name: ''
+    last_name: ''
+    is_staff: true
+    is_active: true
+    date_joined: 2016-01-01 20:00:00.000000+00:00
+    groups: []
+    user_permissions: []

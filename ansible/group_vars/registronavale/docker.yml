@@ -21,6 +21,7 @@ containers:
       WEB_DOMAIN: api.registronavale.com
     vars:
       database: "{{ database }}"
+      admin_password: "pbkdf2_sha256$24000$qrS3syRl9Zp2$bV2DN6WNYPiCui4gDx453GLrHvXF2ZhOMntXBVMgQ5w="  # already hashed, no need for vault
     links:
       - postgres
 
