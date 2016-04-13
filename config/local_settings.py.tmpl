@@ -1,0 +1,19 @@
+"""
+Local settings for the registronavale project.
+"""
+
+#DEBUG = False
+
+{% if database is defined %}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '{{ database.name }}',
+        'USER': '{{ database.user }}',
+        'PASSWORD': '{{ database.password }}',
+        'HOST': '{{ database.host }}',
+    }
+}
+{% endif %}
+
+STATIC_ROOT = 'static'
