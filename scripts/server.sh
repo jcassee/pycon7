@@ -4,4 +4,4 @@ set -e
 
 python manage.py migrate --noinput
 
-uwsgi --master --http-socket=0.0.0.0:80 --home=. --module=wsgi:application --uid=nobody
+uwsgi --master --http-socket=0.0.0.0:80 --home=. --module=wsgi:application
