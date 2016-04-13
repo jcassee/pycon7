@@ -2,9 +2,6 @@
 
 set -e
 
-basedir=`dirname "$0"`
-cd "$basedir/.."
-
 python manage.py syncdb --noinput
 python manage.py migrate --noinput
 

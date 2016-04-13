@@ -106,3 +106,10 @@ def filter_deprecation_warnings(record):
 
 warn_logger = logging.getLogger('py.warnings')
 warn_logger.addFilter(filter_deprecation_warnings)
+
+
+# Include local config
+try:
+    from local_settings import *
+except ImportError:
+    pass
