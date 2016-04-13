@@ -2,9 +2,7 @@
 
 set -e
 
-sudo add-apt-repository -y ppa:ansible/ansible
-sudo apt-get update -q
-sudo apt-get install -y ansible
+pip install ansible
 
 cd ansible
 ansible-playbook deploy.yml
