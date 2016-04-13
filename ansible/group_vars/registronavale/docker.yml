@@ -15,7 +15,7 @@ containers:
       POSTGRES_USER: "{{ database.user }}"
       POSTGRES_PASSWORD: "{{ database.password }}"
 
-  - name: registronavale
+  - name: django
     image: jcassee/registronavale
     env:
       WEB_DOMAIN: api.registronavale.com
