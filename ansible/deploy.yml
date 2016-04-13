@@ -1,4 +1,9 @@
 ---
+- name: Initialize Ansible
+  hosts: localhost
+  roles:
+    - role: init
+
 - name: Deploy Docker containers
   hosts: docker
   roles:

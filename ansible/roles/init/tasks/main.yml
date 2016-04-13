@@ -1,0 +1,29 @@
+---
+- name: Create SSH private key
+  copy:
+    content: "{{ ssh_private_key }}"
+    dest: "{{ lookup('curdir') }}/.id_ansible"
+    mode: 0600
+
+- name: Create SSH public host keys for hostnames
+  shell: "ssh-keyscan -t rsa,dsa,ecdsa,ed25519 {{ item }} > {{ item }}"
+  args:
+    chdir: "{{ lookup('curdir') }}/ssh/known_hosts.d"
+    creates: "{{ item }}"
+  with_items: "{{ groups['all'] | difference(['localhost']) }}"
+
+- name: Create SSH public host keys for IP addresses
+  shell: "ssh-keyscan -t rsa,dsa,ecdsa,ed25519 {{ item | resolve_ip }} > {{ item }}_ip"
+  args:
+    chdir: "{{ lookup('curdir') }}/ssh/known_hosts.d"
+    creates: "{{ item }}_ip"
+  with_items: "{{ groups['all'] | difference(['localhost']) }}"
+
+- name: Create SSH known hosts file
+  assemble:
+    src: "{{ lookup('curdir') }}/ssh/known_hosts.d"
+    dest: "{{ lookup('curdir') }}/ssh/known_hosts"
+
+- name: Mark Ansible initialized
+  set_fact:
+    initialized: yes
