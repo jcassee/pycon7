@@ -4,4 +4,4 @@ sudo: required
 services:
   - docker
 script:
-  - scripts/_integrate.sh
+  - scripts/integrate.sh

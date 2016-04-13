@@ -11,6 +11,7 @@ section() {
   [ -z "$TRAVIS" ] || echo -en "travis_fold:end:$1\\r"
 }
 
+section setup
 section build
 section test
 section publish
