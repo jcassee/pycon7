@@ -7,11 +7,12 @@ cd "$dirname/.."
 
 section() {
   [ -z "$TRAVIS" ] || echo -en "travis_fold:start:$1\\r"
-  scripts/"$1".sh
+  scripts/integrate/"$1".sh
   [ -z "$TRAVIS" ] || echo -en "travis_fold:end:$1\\r"
 }
 
+section build
 section test
-section docker
-section ansible
+section publish
+section deploy
 section relish
