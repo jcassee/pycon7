@@ -14,7 +14,7 @@ class SearchShips(ListModelMixin, GenericViewSet):
 
     def get_queryset(self):
         query = self.request.query_params['q']
-        return models.Ship.objects.filter(name__contains=query)
+        return models.Ship.objects.filter(name__icontains=query)
 
     def retrieve(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
