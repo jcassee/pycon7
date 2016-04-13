@@ -1,0 +1,6 @@
+---
+- name: Deploy Docker containers
+  hosts: docker
+  roles:
+    - role: docker_containers
+      remove_unknown_containers: yes

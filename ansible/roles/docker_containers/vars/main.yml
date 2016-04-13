@@ -1,0 +1,5 @@
+---
+running_names: "{{ docker_containers | docker_container_names | sort }}"
+run_names: "{{ run_containers | map(attribute='name') | list }}"
+stop_names: "{{ running_names | difference(run_names) | difference(ignored_unknown_containers) | sort }}"
+settings: "{{ run_containers | to_dict('name') }}"

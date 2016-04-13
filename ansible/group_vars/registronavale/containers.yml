@@ -1,0 +1,19 @@
+---
+containers:
+
+  - name: nginx
+    image: nginx
+    env:
+      WEB_DOMAIN: api.registronavale.com
+
+  - name: sslterm
+    image: jcassee/nginx-sslterm
+    vars:
+      ssl_certificate: "{{ ssl_chain }}"
+      ssl_certificate_key: "{{ ssl_private_key }}"
+      ssl_trusted_certificate: "{{ ssl_rooted_chain }}"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /run/docker.sock:/run/docker.sock:ro

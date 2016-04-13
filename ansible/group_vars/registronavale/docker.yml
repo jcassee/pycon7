@@ -1,0 +1,6 @@
+---
+docker_registry:
+  url: https://index.docker.io/v1/
+  email: joost+registronavale@cassee.net
+  username: registronavale
+  password: "{{ vault_docker_registry.password }}"
