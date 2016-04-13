@@ -30,8 +30,8 @@ pip-delete-this-directory.txt
 
 # Django stuff:
 *.log
-local_settings.py
-db.sqlite3
+/local_settings.py
+/db.sqlite3
 
 # IDE
 .idea/
