@@ -4,7 +4,6 @@ from django.db import models
 from rest_framework import serializers
 from rest_framework.fields import empty
 from rest_framework.reverse import reverse
-from rest_framework.utils.serializer_helpers import ReturnDict
 
 from registronavale import profiles
 from registronavale import relations
@@ -43,6 +42,11 @@ class HalSerializer(serializers.Serializer):
 
         return ret
 
+    def link(self, view_name, args=None, kwargs=None, **params):
+        ret = {'href': reverse(view_name, args, kwargs, self.context['request'])}
+        ret.update(params)
+        return ret
+
     def get_links(self, request, instance=None):
         return None
 
@@ -64,6 +68,7 @@ class HalCollectionSerializer(HalSerializer):
                 'href': profiles.COLLECTION,
             },
             relations.SELF: {
+                # Collections are not often embedded, so although not really correct this is usually safe
                 'href': request.build_absolute_uri(),
             },
         }

@@ -1,8 +1,7 @@
-from rest_framework.serializers import ModelSerializer, reverse
+from rest_framework.serializers import ModelSerializer
 
 from drf_hal.serializers import HalCollectionSerializer, HalSerializer
 from registronavale import profiles, relations
-
 from .models import Company, Ship
 
 
@@ -16,9 +15,7 @@ class CompanySerializer(HalSerializer, ModelSerializer):
 
     def get_links(self, request, instance=None):
         return {
-            relations.OWNED_SHIPS: {
-                'href': reverse('company-ships', kwargs={'pk': instance.pk}, request=request)
-            },
+            relations.OWNED_SHIPS: self.link('company-ships', kwargs={'pk': instance.pk}),
         }
 
 
@@ -34,7 +31,7 @@ class ShipSerializer(HalSerializer, ModelSerializer):
     def get_links(self, request, instance=None):
         ret = {}
         if instance.owner is not None:
-            ret[relations.SHIP_OWNER] = {'href': reverse('company', kwargs={'pk': instance.owner.pk}, request=request)}
+            ret[relations.SHIP_OWNER] = self.link('company', kwargs={'pk': instance.owner.pk})
         return ret
 
     def get_embedded(self, request, instance=None):
