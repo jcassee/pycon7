@@ -75,7 +75,7 @@ class HalCollectionSerializer(HalSerializer):
 
     def get_embedded(self, request, instance=None):
         iterable = instance.all() if isinstance(instance, models.Manager) else instance
-        elements = [self.child.to_representation(item, include_embedded=False) for item in iterable]
+        elements = [self.child.to_representation(item) for item in iterable]
         if elements:
             return {
                 'item': elements
