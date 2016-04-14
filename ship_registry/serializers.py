@@ -28,12 +28,6 @@ class ShipSerializer(HalSerializer, ModelSerializer):
         view_name = 'ship'
         lookup_field = 'imo'
 
-    def get_links(self, request, instance=None):
-        ret = {}
-        if instance.owner is not None:
-            ret[relations.SHIP_OWNER] = self.link('company', kwargs={'pk': instance.owner.pk})
-        return ret
-
     def get_embedded(self, request, instance=None):
         ret = {}
         if instance.owner is not None:

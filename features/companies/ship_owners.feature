@@ -42,9 +42,22 @@ Feature: Getting information about companies that own ships
               },
               "self": {
                 "href": "https://api.registronavale.com/ship/12345"
-              },
+              }
+            },
+            "_embedded": {
               "http://rels.registronavale.com/ship-owner": {
-                "href": "https://api.registronavale.com/company/2"
+                "name": "Rederij Joost",
+                "_links": {
+                  "profile": {
+                    "href": "http://profiles.registronavale.com/company"
+                  },
+                  "self": {
+                    "href": "https://api.registronavale.com/company/2"
+                  },
+                  "http://rels.registronavale.com/owned-ships": {
+                    "href": "https://api.registronavale.com/company-ships/2"
+                  }
+                }
               }
             }
           }
