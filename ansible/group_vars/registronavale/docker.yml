@@ -62,4 +62,4 @@ container_templates:
     domain_base: registronavale.com
     vars:
       admin_password: "pbkdf2_sha256$24000$qrS3syRl9Zp2$bV2DN6WNYPiCui4gDx453GLrHvXF2ZhOMntXBVMgQ5w="  # already hashed, no need for vault
-      initial_data: ""
+      load_test_data: yes
