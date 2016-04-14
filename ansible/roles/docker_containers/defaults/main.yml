@@ -1,5 +1,6 @@
 ---
-run_containers: "{{ containers | default([]) }}"
+container_templates: []
+containers: []
 missing_ok: no
 remove_unknown_containers: no
 ignored_unknown_containers: []

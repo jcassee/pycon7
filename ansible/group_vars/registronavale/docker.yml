@@ -52,3 +52,14 @@ containers:
       - "443:443"
     volumes:
       - /run/docker.sock:/run/docker.sock:ro
+
+
+container_templates:
+
+  - name_base: api
+    project: jcassee/registronavale
+    image_repo: jcassee/registronavale
+    domain_base: dev.registronavale.com
+    vars:
+      admin_password: "pbkdf2_sha256$24000$qrS3syRl9Zp2$bV2DN6WNYPiCui4gDx453GLrHvXF2ZhOMntXBVMgQ5w="  # already hashed, no need for vault
+      initial_data: ""
