@@ -1,7 +1,8 @@
 from behave import *
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 
-from ship_registry.models import Company, Ship
+from ship_registry.models import Company, Ship, ShipOwnership
 
 
 @given("the registry contains no ships")
@@ -17,7 +18,8 @@ def step_impl(context, name, imo):
 @given('a ship named "{name}" with imo "{imo:d}" owned by "{owner}"')
 def step_impl(context, name, imo, owner):
     company = Company.objects.get(name=owner)
-    Ship.objects.create(name=name, imo=imo, owner=company)
+    ship = Ship.objects.create(name=name, imo=imo)
+    ShipOwnership.objects.create(company=company, ship=ship, begin=timezone.now())
 
 
 @when('you get the ship "{name}"')
