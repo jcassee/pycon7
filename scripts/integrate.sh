@@ -17,7 +17,7 @@ if [ "$DOCKER_TAG" = "master" ]; then
   DOCKER_TAG="latest"
 fi
 
-TAG=$(echo "$TAG" | tr A-Z a-z | sed 's/\(^[^0-9a-z]\|[^0-9a-z._-]\)/-/g')  # sanitize tag
+DOCKER_TAG=$(echo "$DOCKER_TAG" | tr A-Z a-z | sed 's/\(^[^0-9a-z]\|[^0-9a-z._-]\)/-/g')  # sanitize tag
 DOCKER_IMAGE="jcassee/registronavale:$DOCKER_TAG"
 export DOCKER_TAG DOCKER_IMAGE
 
