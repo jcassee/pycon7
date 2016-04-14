@@ -14,5 +14,5 @@ if [ "$tag" = "master" ]; then
   tag="latest"
 fi
 
-docker tag jcassee/registronavale jcassee/registronavale:"$tag"
+docker tag --force jcassee/registronavale jcassee/registronavale:"$tag"
 docker push jcassee/registronavale:"$tag"
