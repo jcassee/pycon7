@@ -4,5 +4,5 @@ set -e
 
 docker run \
     --tty \
-    jcassee/registronavale \
+    "$IMAGE" \
     python manage.py behave --quiet --no-timings

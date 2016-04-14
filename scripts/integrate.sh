@@ -17,7 +17,9 @@ if [ "$TAG" = "master" ]; then
   TAG="latest"
 fi
 
-export TAG
+IMAGE="jcassee/registronavale.com:$TAG"
+export TAG IMAGE
+echo "########## Building $IMAGE ##########"
 
 i=0
 section() {

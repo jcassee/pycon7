@@ -2,4 +2,4 @@
 
 set -e
 
-docker build -t jcassee/registronavale .
+docker build -t "$IMAGE" .
