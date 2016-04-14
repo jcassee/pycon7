@@ -15,7 +15,7 @@ containers:
       POSTGRES_USER: "{{ database.user }}"
       POSTGRES_PASSWORD: "{{ database.password }}"
 
-  - name: django
+  - name: api
     image: jcassee/registronavale
     env:
       WEB_DOMAIN: api.registronavale.com
@@ -25,11 +25,21 @@ containers:
     links:
       - postgres
 
+  - name: admin
+    image: jcassee/registronavale
+    env:
+      WEB_DOMAIN: admin.registronavale.com
+    vars:
+      database: "{{ database }}"
+    command: scripts/admin.sh
+    links:
+      - postgres
+
   - name: halbrowser
     image: jcassee/hal-browser
     env:
       WEB_DOMAIN: browser.registronavale.com
-      ENTRY_POINT: http://api.registronavale.com/
+      ENTRY_POINT: https://api.registronavale.com/
 
   - name: sslterm
     image: jcassee/nginx-sslterm
