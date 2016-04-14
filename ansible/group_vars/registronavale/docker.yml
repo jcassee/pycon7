@@ -25,6 +25,13 @@ containers:
     links:
       - postgres
 
+  - name: halbrowser
+    image: jcassee/hal-browser
+    env:
+      WEB_DOMAIN: browser.registronavale.com
+    vars:
+      entry_point: http://api.registronavale.com/
+
   - name: sslterm
     image: jcassee/nginx-sslterm
     vars:
