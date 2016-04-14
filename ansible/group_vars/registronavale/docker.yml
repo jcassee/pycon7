@@ -29,8 +29,7 @@ containers:
     image: jcassee/hal-browser
     env:
       WEB_DOMAIN: browser.registronavale.com
-    vars:
-      entry_point: http://api.registronavale.com/
+      ENTRY_POINT: http://api.registronavale.com/
 
   - name: sslterm
     image: jcassee/nginx-sslterm
