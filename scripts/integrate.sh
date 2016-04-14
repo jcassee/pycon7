@@ -17,9 +17,8 @@ if [ "$DOCKER_TAG" = "master" ]; then
   DOCKER_TAG="latest"
 fi
 
-DOCKER_IMAGE="jcassee/registronavale.com:$DOCKER_TAG"
+DOCKER_IMAGE="jcassee/registronavale:$DOCKER_TAG"
 export DOCKER_TAG DOCKER_IMAGE
-echo "########## Building $DOCKER_IMAGE ##########"
 
 i=0
 section() {
@@ -30,6 +29,7 @@ section() {
   [ -z "$TRAVIS" ] || echo -en "travis_fold:end:$1\\r"
 }
 
+echo "########## Deploying $DOCKER_IMAGE ##########"
 section setup
 section build
 section test
