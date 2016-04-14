@@ -2,4 +2,4 @@
 
 set -e
 
-docker push "$IMAGE"
+docker push "$DOCKER_IMAGE"

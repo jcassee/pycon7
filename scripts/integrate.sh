@@ -7,19 +7,19 @@ cd "$dirname/.."
 
 # Determine repository tag
 if [ "$TRAVIS_PULL_REQUEST" -a "$TRAVIS_PULL_REQUEST" != "false" ]; then
-  TAG="pr$TRAVIS_PULL_REQUEST"
+  DOCKER_TAG="pr$TRAVIS_PULL_REQUEST"
 elif [ "$TRAVIS_BRANCH" ]; then
-  TAG="$TRAVIS_BRANCH"
+  DOCKER_TAG="$TRAVIS_BRANCH"
 else
-  TAG=$(git rev-parse --abbrev-ref HEAD)
+  DOCKER_TAG=$(git rev-parse --abbrev-ref HEAD)
 fi
-if [ "$TAG" = "master" ]; then
-  TAG="latest"
+if [ "$DOCKER_TAG" = "master" ]; then
+  DOCKER_TAG="latest"
 fi
 
-IMAGE="jcassee/registronavale.com:$TAG"
-export TAG IMAGE
-echo "########## Building $IMAGE ##########"
+DOCKER_IMAGE="jcassee/registronavale.com:$DOCKER_TAG"
+export DOCKER_TAG DOCKER_IMAGE
+echo "########## Building $DOCKER_IMAGE ##########"
 
 i=0
 section() {

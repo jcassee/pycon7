@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "$TAG" = "latest" ]; then
+if [ "$DOCKER_TAG" = "latest" ]; then
   docker run \
       --env RELISH_API_TOKEN=$RELISH_API_TOKEN \
       --volume "$PWD":/src:ro \

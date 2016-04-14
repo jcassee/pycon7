@@ -2,4 +2,4 @@
 
 set -e
 
-docker build -t "$IMAGE" .
+docker build -t "$DOCKER_IMAGE" .
