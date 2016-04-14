@@ -5,3 +5,6 @@ services:
   - docker
 script:
   - scripts/integrate.sh
+branches:
+ only:
+   - master
