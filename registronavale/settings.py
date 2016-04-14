@@ -96,6 +96,7 @@ USE_L10N = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Disable deprecation warnings
