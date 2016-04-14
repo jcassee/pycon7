@@ -15,6 +15,7 @@ setup(
     install_requires=[
         'behave-django',
         'Django',
+        'django-cors-headers',
         'django-filter',
         'django-extensions',
         'djangorestframework',
