@@ -10,7 +10,7 @@ Feature: The root resource
       And the representation is
           """json
           {
-            "version": "0.1",
+            "version": "0.2",
             "_links": {
               "self": {
                 "href": "https://api.registronavale.com/"
