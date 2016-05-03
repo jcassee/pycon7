@@ -1,8 +1,12 @@
 # Registro Navale [![Build Status](https://travis-ci.org/jcassee/registronavale.svg)](https://travis-ci.org/jcassee/registronavale)
 
-An example project that demonstrates how to create a hypermedia API using Django
-REST framework and document it using Gherkin tests, developed for
-[PyCon Sette](https://www.pycon.it).
+An example project that demonstrates how to create a hypermedia API using
+[Django REST framework](http://www.django-rest-framework.org/) and document it
+using Gherkin tests, developed for [PyCon Sette](https://www.pycon.it).
+([slides](http://slides.com/jcassee/pycon-sette-hypermedia))
+
+It also demonstrates how to do continuous delivery using Docker and Ansible.
+([slides](http://slides.com/jcassee/pycon-sette-deployment))
 
 [**Read the documentation at Relish**](http://www.relishapp.com/jcassee/registronavale)
 
