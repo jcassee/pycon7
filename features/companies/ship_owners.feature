@@ -18,7 +18,11 @@ Feature: Getting information about companies that own ships
                 "href": "https://api.registronavale.com/company/1"
               },
               "http://rels.registronavale.com/owned-ships": {
-                "href": "https://api.registronavale.com/company-ships/1"
+                "href": "https://api.registronavale.com/company-ships/1",
+                "deprecation": "http://apidocs.registronavale.com/deprecation/ship-owner"
+              },
+              "http://rels.registronavale.com/owner-history": {
+                "href": "https://api.registronavale.com/company-ships-history/1"
               }
             }
           }
@@ -42,22 +46,13 @@ Feature: Getting information about companies that own ships
               },
               "self": {
                 "href": "https://api.registronavale.com/ship/12345"
-              }
-            },
-            "_embedded": {
+              },
               "http://rels.registronavale.com/ship-owner": {
-                "name": "Rederij Joost",
-                "_links": {
-                  "profile": {
-                    "href": "http://profiles.registronavale.com/company"
-                  },
-                  "self": {
-                    "href": "https://api.registronavale.com/company/2"
-                  },
-                  "http://rels.registronavale.com/owned-ships": {
-                    "href": "https://api.registronavale.com/company-ships/2"
-                  }
-                }
+                "href": "https://api.registronavale.com/company/2",
+                "deprecation": "http://apidocs.registronavale.com/deprecation/ship-owner"
+              },
+              "http://rels.registronavale.com/owner-history": {
+                "href": "https://api.registronavale.com/ship-owners-history/12345"
               }
             }
           }

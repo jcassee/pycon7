@@ -19,6 +19,9 @@ Feature: Searching for ships
               },
               "self": {
                 "href": "https://api.registronavale.com/ship/12345"
+              },
+              "http://rels.registronavale.com/owner-history": {
+                "href": "https://api.registronavale.com/ship-owners-history/12345"
               }
             }
           }

@@ -10,6 +10,33 @@
     last_name: ''
     is_staff: true
     is_active: true
-    date_joined: 2016-01-01 20:00:00.000000+00:00
+    date_joined: 2016-01-01 20:00:00
     groups: []
     user_permissions: []
+
+{% if load_test_data | default(False) %}
+- model: ship_registry.company
+  pk: 1
+  fields: {name: Rederij Joost}
+- model: ship_registry.company
+  pk: 2
+  fields: {name: Joost Shipping Inc.}
+- model: ship_registry.ship
+  pk: 1
+  fields: {imo: 12345, name: Providence}
+- model: ship_registry.ship
+  pk: 2
+  fields: {imo: 12346, name: Providence II}
+- model: ship_registry.ship
+  pk: 3
+  fields: {imo: 88888, name: Phantom Mirage}
+- model: ship_registry.shipownership
+  pk: 1
+  fields: {company: 1, ship: 1, begin: !!timestamp '1970-01-01 00:00:00', end: null}
+- model: ship_registry.shipownership
+  pk: 2
+  fields: {company: 1, ship: 2, begin: !!timestamp '1970-01-01 00:00:00', end: null}
+- model: ship_registry.shipownership
+  pk: 3
+  fields: {company: 2, ship: 3, begin: !!timestamp '1970-01-01 00:00:00', end: null}
+{% endif %}
